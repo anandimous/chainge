@@ -2,6 +2,8 @@ pragma solidity ^0.4.15;
 contract User2 {
   // state
   bytes32[] private proofs;
+  mapping(bytes32 => string) job_hash;
+
   // store a proof of existence in the contract state
   // *transactional function*
   function storeProof(bytes32 proof) {
@@ -11,6 +13,7 @@ contract User2 {
   // *transactional function*
   function notarize(string descriptor) {
     bytes32 proof = proofFor(descriptor);
+    job_hash[proof] = descriptor;
     storeProof(proof);
   }
 // helper function to get a descriptor's sha256
@@ -23,6 +26,10 @@ contract User2 {
   function checkString(string descriptor) constant returns (bool) {
     bytes32 proof = proofFor(descriptor);
     return hasProof(proof);
+  }
+  function findString(bytes32 proof) constant returns (string) {
+    string result = job_hash[proof];
+    return result;
   }
   // returns true if proof is stored
   // *read-only function*
