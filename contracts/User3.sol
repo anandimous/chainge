@@ -7,21 +7,21 @@ contract User3 {
   function storeProof(bytes32 proof) {
     proofs.push(proof);
   }
-// calculate and store the proof for a document
+// calculate and store the proof for a descriptor
   // *transactional function*
-  function notarize(string document) {
-    bytes32 proof = proofFor(document);
+  function notarize(string descriptor) {
+    bytes32 proof = proofFor(descriptor);
     storeProof(proof);
   }
-// helper function to get a document's sha256
+// helper function to get a descriptor's sha256
   // *read-only function*
-  function proofFor(string document) constant returns (bytes32) {
-    return sha256(document);
+  function proofFor(string descriptor) constant returns (bytes32) {
+    return sha256(descriptor);
   }
-// check if a document has been notarized
+// check if a descriptor has been notarized
   // *read-only function*
-  function checkDocument(string document) constant returns (bool) {
-    bytes32 proof = proofFor(document);
+  function checkString(string descriptor) constant returns (bool) {
+    bytes32 proof = proofFor(descriptor);
     return hasProof(proof);
   }
   // returns true if proof is stored
