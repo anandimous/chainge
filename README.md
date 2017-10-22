@@ -1,4 +1,4 @@
-# chainge - The Social Blockchain App
+# chainge - The Social Impact Blockchain App
 
 ## Intro
 **chainge** is a revolutionary app designed for refugees to incorporate their daily life initiatives into a systematic, 
